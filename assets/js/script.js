@@ -1,4 +1,4 @@
-var currDay = moment().format("dddd LL");
+var currDay = moment().format("dddd, MMMM Do YYYY");
 $("#currentDay").append(currDay);
 
 var currTime = new Date().getHours();
@@ -21,18 +21,27 @@ for (let rows = 9; rows < 18; rows++) {
 
   // create text area
   var createTextArea = document.createElement("textarea");
-  createTextArea.setAttribute("class", "col-10 description form-control " + statusClass);
+  var storageValue = localStorage.getItem('hour' + rows)
+  createTextArea.setAttribute("class", "col-10 form-control " + statusClass);
+  createTextArea.textContent = storageValue
 
   // create time-block
   var createTimeBlock = document.createElement("div");
   createTimeBlock.setAttribute("class", "col-1 hour")
-  createTimeBlock.innerHTML = rows + ' AM'
+  if (rows < 12) {
+    createTimeBlock.innerHTML = rows + ' AM'
+  } else if (rows === 12) {
+    createTimeBlock.innerHTML = rows + ' PM'
+  } else {
+    createTimeBlock.innerHTML = (rows - 12) + ' PM'
+  }
 
   // create new row 
   var containerEl = document.querySelector(".container");
 
   var createRow = document.createElement("div");
   createRow.setAttribute("class", "row")
+  createRow.setAttribute("id", "hour" + rows)
   createRow.appendChild(createTimeBlock)
   createRow.appendChild(createTextArea)
   createRow.appendChild(createButton)
@@ -41,6 +50,15 @@ for (let rows = 9; rows < 18; rows++) {
   console.log('row= ' + rows + ' status ' + statusClass)
 
 }
+
+$(".saveBtn").on("click", function () {
+  console.log(this);
+  var text = $(this).siblings(".description").val();
+  var time = $(this).parent().attr("id");
+
+  //set items in local storage.
+  localStorage.setItem(time, text);
+})
 
 
 
