@@ -11,4 +11,4 @@ The objectives of this project include:
 * form-field for each hour in the workday to record tasks for that hour
 * selecting the blue save button records tasks to local storage
 ## Screenshot
-![Alt text](./assets/images/scheduler-screenshot.png?raw=true "website screenshot")
+![Alt text](./assets/images/scheduler-screenshot.PNG?raw=true "website screenshot")
