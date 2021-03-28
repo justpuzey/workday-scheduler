@@ -53,7 +53,7 @@ for (let rows = 9; rows < 18; rows++) {
 
 $(".saveBtn").on("click", function () {
   console.log(this);
-  var text = $(this).siblings(".description").val();
+  var text = $(this).siblings(".form-control").val();
   var time = $(this).parent().attr("id");
 
   //set items in local storage.
